@@ -1,3 +1,9 @@
+eta-check-inputdevice (0.1.1) unstable; urgency=medium
+
+  * Fix white space issues in Makefile
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Thu, 08 Nov 2018 17:10:42 +0300
+
 eta-check-inputdevice (0.1.0) unstable; urgency=medium
 
   * Initial release.
