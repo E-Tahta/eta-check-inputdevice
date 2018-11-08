@@ -1,0 +1,2 @@
+extend-diff-ignore = ".drone.yml"
+extend-diff-ignore = ".drone.yml"

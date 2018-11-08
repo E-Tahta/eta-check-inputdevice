@@ -1,0 +1,70 @@
+#!/bin/bash
+
+#author : fatih
+
+set -e
+
+RED='\033[1;31m'
+YEL='\033[1;33m'
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
+
+mice_file=/var/run/mice.pid
+log_file=/var/log/eta.log
+count_file=/usr/share/count
+
+now=$(date +"%T")
+
+echo -e "${RED}$0" >> $log_file
+u=$(/usr/bin/whoami)
+echo -e "${RED}$0${NC} : running as ${YEL}$u" >> $log_file
+
+
+if [ ! -f $count_file ];then
+	echo "0" > $count_file
+fi
+
+if [ $1 == "udev" ]; then
+	if [ $2 == "plugged" ]; then
+		if [ $ID_MODEL_ID != "0084" ] && [ $ID_MODEL_ID != "0085" ] && [ $ID_MODEL_ID != "0086" ] && [ $ID_MODEL_ID != "0087" ] && [ $ID_MODEL_ID != "0088" ] && [ $ID_MODEL_ID != "0c20" ]; then
+			count=$(lsusb | grep -i mouse | wc -l)
+			echo "$count" > $count_file
+			count=`cat $count_file`
+			if [ $count == 1 ]; then
+				echo `touch $mice_file`
+				echo "${RED}$0${NC} : mouse is plugged - $now" >> $log_file
+			else
+            			echo "${RED}$0${NC} : a mouse is already plugged - $now" >> $log_file
+				if [ ! -f $mice_file ];then
+					echo `touch $mice_file`
+				fi
+			fi
+		fi
+	elif [ $2 == "unplugged" ]; then
+		if [ $ID_MODEL_ID != "0084" ] && [ $ID_MODEL_ID != "0085" ] && [ $ID_MODEL_ID != "0086" ] && [ $ID_MODEL_ID != "0087" ] && [ $ID_MODEL_ID != "0088" ] && [ $ID_MODEL_ID != "0c20" ]; then
+			count=$(lsusb | grep -i mouse | wc -l)
+			echo "$count" > $count_file
+			count=`cat $count_file`
+			if [ $count -gt 0 ]; then
+				echo "${RED}$0${NC} : a mouse is unplugged but another mouse is already plugged - $now" >> $log_file
+				if [ ! -f $mice_file ];then
+					echo `touch $mice_file`
+				fi
+
+			else
+				echo `rm $mice_file`
+				echo "${RED}$0${NC} : mouse is unplugged - $now" >> $log_file
+			fi
+		fi
+	fi
+
+elif [ $1 == "systemd" ]; then
+	count=$(lsusb | grep -i mouse | wc -l)
+	echo "$count" > $count_file
+	count=`cat $count_file`
+	if [ $count == 0 ]; then
+		echo `rm $mice_file`
+		echo "${RED}$0${NC} : no mouse detected on start - $now" >> $log_file
+	fi
+fi
+

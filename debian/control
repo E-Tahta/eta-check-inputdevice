@@ -1,0 +1,16 @@
+Source: eta-check-inputdevice
+Section: utils
+Priority: optional
+Maintainer: Fatih Altun <fatih.altun@pardus.org.tr>
+Uploaders: Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>
+Build-Depends: debhelper (>= 9), dh-systemd
+Standards-Version: 3.9.6
+Homepage: http://pardus.org.tr
+
+Package: eta-check-inputdevice
+Architecture: all
+Pre-Depends: systemd, udev
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: ETAP Giriş Cihazları Denetcisi
+ Harici olarak takılan fareleri tespit etmeye yarayan
+ udev ve systemd kullanan bir betik içermektedir.
