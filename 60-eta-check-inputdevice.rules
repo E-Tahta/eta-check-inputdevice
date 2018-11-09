@@ -1,2 +1,2 @@
-ACTION=="add", KERNEL=="mouse[0-9]*", ENV{ID_MODEL_ID}!="0c20", ENV{ID_VENDOR_ID}!="6615", RUN+="/usr/bin/eta-check-inputdevice udev plugged"
-ACTION=="remove", KERNEL=="mouse[0-9]*", ENV{ID_MODEL_ID}!="0c20", ENV{ID_VENDOR_ID}!="6615", RUN+="/usr/bin/eta-check-inputdevice udev unplugged"
+ACTION=="add", KERNEL=="mouse[0-9]*", RUN+="/usr/bin/eta-check-inputdevice udev plugged"
+ACTION=="remove", KERNEL=="mouse[0-9]*", RUN+="/usr/bin/eta-check-inputdevice udev unplugged"
