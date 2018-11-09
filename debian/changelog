@@ -1,3 +1,9 @@
+eta-check-inputdevice (0.1.2) unstable; urgency=medium
+
+  * Add phases supports
+
+ -- Fatih Altun <fatihgrsn@gmail.com>  Fri, 09 Nov 2018 16:18:00 +0300
+
 eta-check-inputdevice (0.1.1) unstable; urgency=medium
 
   * Fix white space issues in Makefile
