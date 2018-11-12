@@ -17,7 +17,6 @@ now=$(date +"%T")
 
 vmid="$ID_VENDOR_ID:$ID_MODEL_ID"
 
-
 if [ ! -f $count_file ];then
 	echo "0" > $count_file
 fi
@@ -27,16 +26,11 @@ if [ $1 == "udev" ]; then
 		phase1="0"
 		phase2="0"
 		if echo "$vmid" | grep -qE "(2621:2201|2621:4501)" ; then
-
 			phase2="1"
-
 		elif echo "$vmid" | grep -qE "(6615:0084|6615:0085|6615:0086|6615:0087|6615:0088|6615:0c20)" ; then
-
 			phase1="1"
 		fi
-
 		if ([ $phase1 == "0" ] && [ $phase2 == "0" ]); then
-
 			count=$(lsusb | grep -i mouse | wc -l)
 			echo "$count" > $count_file
 			count=`cat $count_file`
@@ -50,17 +44,14 @@ if [ $1 == "udev" ]; then
 				fi
 			fi
 		fi
-
 	elif [ $2 == "unplugged" ]; then
 		phase1="0"
 		phase2="0"
 		if echo "$vmid" | grep -qE "(2621:2201|2621:4501)" ; then
 			phase2="1"
-
 		elif echo "$vmid" | grep -qE "(6615:0084|6615:0085|6615:0086|6615:0087|6615:0088|6615:0c20)" ; then
 			phase1="1"
 		fi
-
 		if ([ $phase1 == "0" ] && [ $phase2 == "0" ]); then
 			count=$(lsusb | grep -i mouse | wc -l)
 			echo "$count" > $count_file
@@ -70,14 +61,12 @@ if [ $1 == "udev" ]; then
 				if [ ! -f $mice_file ];then
 					echo `touch $mice_file`
 				fi
-
 			else
 				echo `rm $mice_file`
 				echo -e "${RED}$0${NC} : mouse is unplugged - $now" >> $log_file
 			fi
 		fi
 	fi
-
 elif [ $1 == "systemd" ]; then
 	count=$(lsusb | grep -i mouse | wc -l)
 	echo "$count" > $count_file
@@ -87,4 +76,3 @@ elif [ $1 == "systemd" ]; then
 		echo -e "${RED}$0${NC} : no mouse detected on start - $now" >> $log_file
 	fi
 fi
-
