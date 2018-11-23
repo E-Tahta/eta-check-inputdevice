@@ -1,3 +1,10 @@
+eta-check-inputdevice (0.2.0) stable; urgency=medium
+
+  * Major update on source, use qt core application and udev
+  * Update build dependencies
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Fri, 23 Nov 2018 15:26:14 +0300
+
 eta-check-inputdevice (0.1.3) unstable; urgency=medium
 
   * Remove blank lines
