@@ -1,3 +1,9 @@
+eta-check-inputdevice (0.2.1) stable; urgency=medium
+
+  * Create confliction with eta-check-optictouch
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Fri, 23 Nov 2018 16:00:21 +0300
+
 eta-check-inputdevice (0.2.0) stable; urgency=medium
 
   * Major update on source, use qt core application and udev
