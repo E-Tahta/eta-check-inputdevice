@@ -11,6 +11,9 @@ Package: eta-check-inputdevice
 Architecture: any
 Pre-Depends: systemd, udev
 Depends: ${shlibs:Depends}, ${misc:Depends}
+Conflicts: eta-check-optictouch (<< 0.1.15)
+Replaces: eta-check-optictouch (<< 0.1.15)
+Provides: eta-check-optictouch
 Description: ETAP Giriş Cihazları Denetcisi
  Harici olarak takılan fareleri tespit etmeye yarayan
  udev ve systemd kullanan bir betik içermektedir.
