@@ -3,12 +3,12 @@ Section: utils
 Priority: optional
 Maintainer: Fatih Altun <fatih.altun@pardus.org.tr>
 Uploaders: Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>
-Build-Depends: debhelper (>= 9), dh-systemd
+Build-Depends: debhelper (>= 9), dh-systemd, qtbase5-dev, libudev-dev
 Standards-Version: 3.9.6
 Homepage: http://pardus.org.tr
 
 Package: eta-check-inputdevice
-Architecture: all
+Architecture: any
 Pre-Depends: systemd, udev
 Depends: ${shlibs:Depends}, ${misc:Depends}
 Description: ETAP Giriş Cihazları Denetcisi
