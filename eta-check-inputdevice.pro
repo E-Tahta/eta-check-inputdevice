@@ -54,7 +54,7 @@ linux:gcc {
 
 target.path = /usr/bin/
 
-service.files = eta-check-optictouch.service
+service.files = eta-check-inputdevice.service
 service.path = /lib/systemd/system/
 
 INSTALLS += target service
