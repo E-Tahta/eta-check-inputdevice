@@ -5,7 +5,7 @@ Before=kdm.service
 [Service]
 Type=oneshot
 User=root
-ExecStart=/usr/bin/eta-check-inputdevice systemd
+ExecStart=/usr/bin/eta-check-inputdevice
 
 [Install]
 WantedBy=multi-user.target
