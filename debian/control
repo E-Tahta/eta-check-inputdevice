@@ -11,7 +11,7 @@ Package: eta-check-inputdevice
 Architecture: any
 Pre-Depends: systemd, udev
 Depends: ${shlibs:Depends}, ${misc:Depends}
-Breaks: eta-check-inputdevice (<< 0.2)
+Breaks: eta-check-inputdevice (<< 0.2), eta-check-optictouch (<< 0.1.15)
 Conflicts: eta-check-optictouch (<< 0.1.15)
 Replaces: eta-check-optictouch (<< 0.1.15)
 Provides: eta-check-optictouch
