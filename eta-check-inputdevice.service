@@ -3,9 +3,10 @@ Description=Pardus ETAP inputdevice runtime detection service
 Before=kdm.service
 
 [Service]
-Type=oneshot
+Type=simple
 User=root
 ExecStart=/usr/bin/eta-check-inputdevice
+Restart=on-failure
 
 [Install]
 WantedBy=multi-user.target

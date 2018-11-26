@@ -86,7 +86,7 @@ void UsbDeviceMonitorPrivate::processUdevNotification(int socket)
             model_id = model_value;
         }
 
-        if ( mouse_id == "1" || touch_id == "1" ) {
+        if ( ( mouse_id == "1" || touch_id == "1" ) && ( !model_id.isEmpty() && !vendor_id.isEmpty()  ) ) {
 
 
             if(m_action.compare(action) != 0 || m_model.compare(model_id) != 0 || m_vendor.compare(vendor_id) != 0) {

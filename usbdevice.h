@@ -3,6 +3,7 @@
 
 #include <QObject>
 #include <QString>
+#include <QRegExp>
 
 enum class UsbDeviceType {
     Phase1,

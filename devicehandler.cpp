@@ -80,7 +80,7 @@ QList<UsbDevice> DeviceHandler::getDeviceList()
 void DeviceHandler::handle(const QString &action, const QString &vendor, const QString &model)
 {
     UsbDevice device(vendor, model);
-    if ( device.getTypeString() == "Mouse" ) {
+    if (device.getType() == UsbDeviceType::Mouse ) {
 
         if(action == "add") {
             if(!m_deviceList.contains(device)) {
@@ -111,7 +111,7 @@ void DeviceHandler::handle(const QString &action, const QString &vendor, const Q
         }
     }
 
-    else if ( device.getTypeString() == "IWB Phase 1"  || device.getTypeString() == "IWB Phase 2") {
+    else if ( device.getType() == UsbDeviceType::Phase1 || device.getType() == UsbDeviceType::Phase2 ) {
 
         if(fh->createPidType(device.getPidTypeNumber())){
             fh->log("The IWB number is "+device.getPidTypeNumber() + " and written to file");
@@ -141,11 +141,14 @@ void DeviceHandler::handle(const QString &action, const QString &vendor, const Q
 
         fh->log("Unknown action");
 
-        if(fh->createPidType(device.getPidTypeNumber())){
-            fh->log("The IWB number is "+device.getPidTypeNumber() + " and written to file");
-        } else {
-            fh->log("Type Number of iwb could not write to type-of-iwb file");
+        if ( fh->NoPidTypeFileDetected() ) {
+            if ( fh->CreateNoPidTypeFile() ) {
+                fh->log("IWB Phase couldn't be detected. 0 IWB number is written to file");
+            } else {
+                fh->log("IWB Phase couldn't be detected. But There is a iwb file with size.");
+            }
         }
+
     }
 
 }

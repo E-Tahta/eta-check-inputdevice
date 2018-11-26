@@ -75,12 +75,12 @@ bool FileHandler::writeData(const QString &str)
 
 bool FileHandler::createPid(const QString &name)
 {
-   if( createFile(pid_path, name) ){
+    if( createFile(pid_path, name) ){
         return true;
-   }
-   else{
-       return false;
-   }
+    }
+    else{
+        return false;
+    }
 }
 
 bool FileHandler::removePid(const QString &name)
@@ -106,16 +106,39 @@ bool FileHandler::createPidType(const QString &pt)
 
     pidtype_file.setFileName(file_fullpath);
     if ( pidtype_file.open(QIODevice::WriteOnly) ){
-            QTextStream out(&pidtype_file);
-            out << pt;
-            pidtype_file.close();;
-            return true;
+        QTextStream out(&pidtype_file);
+        out << pt;
+        pidtype_file.close();
+        return true;
     } else {
         qDebug() << "Pid Type can not write to file";
         return false;
     }
+}
 
+bool FileHandler::NoPidTypeFileDetected()
+{
+    if (createFile(pidtype_path, pidtype_name)) {
+        return true;
+    } else {
+        return false;
+    }
+}
 
+bool FileHandler::CreateNoPidTypeFile()
+{
+    file_fullpath = pid_path + QString("/") + pidtype_path;
+    pidtype_file.setFileName(file_fullpath);
+    if ( !pidtype_file.size() ) {
+        if ( file.open(QIODevice::WriteOnly) ){
+            QTextStream out(&pidtype_file);
+            out << "0";
+            pidtype_file.close();
+        }
+        return true;
+    } else {
+        return false;
+    }
 }
 
 void FileHandler::updateTime()

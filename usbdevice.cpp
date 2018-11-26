@@ -10,11 +10,11 @@ UsbDevice::UsbDevice(const QString &vendor,
     m_vendor = vendor;
     m_model = model;
     QString vm = m_vendor + ":" + m_model;
-    QString m_phase1_device_list(IWB_PHASE1);
-    QString m_phase2_device_list(IWB_PHASE2);
-    if (m_phase1_device_list.contains(vm ,Qt::CaseInsensitive)) {
+    QRegExp m_phase1_device_list(IWB_PHASE1);
+    QRegExp m_phase2_device_list(IWB_PHASE2);
+    if ( m_phase1_device_list.exactMatch(vm) ) {
         udt = UsbDeviceType::Phase1;
-    } else if (m_phase2_device_list.contains(vm ,Qt::CaseInsensitive)) {
+    } else if ( m_phase2_device_list.exactMatch(vm) ) {
         udt = UsbDeviceType::Phase2;
     } else {
         udt = UsbDeviceType::Mouse;

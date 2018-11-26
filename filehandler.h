@@ -17,6 +17,8 @@ public:
     bool createPid(const QString &name);
     bool removePid(const QString &name);
     bool createPidType(const QString &pt);
+    bool NoPidTypeFileDetected();
+    bool CreateNoPidTypeFile();
 
 private:
 
