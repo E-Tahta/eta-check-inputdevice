@@ -1,3 +1,9 @@
+eta-check-inputdevice (0.2.4) stable; urgency=medium
+
+  * Make sure this package breaks check-optictouch too
+
+ -- Yunusemre Şentürk <yunusemre.senturk@pardus.org.tr>  Mon, 26 Nov 2018 11:55:00 +0300
+
 eta-check-inputdevice (0.2.3) stable; urgency=medium
 
   * Make sure previous version is conflicting new one
