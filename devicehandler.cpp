@@ -147,7 +147,7 @@ void DeviceHandler::handle(const QString &action, const QString &vendor, const Q
 
     if ( fh->NoPidTypeFileDetected() ) {
         if ( fh->CreateNoPidTypeFile() ) {
-            fh->log("IWB Phase couldn't be detected. 0 IWB number is written to file");
+            fh->log("IWB Phase couldn't be detected. 0 IWB number is written to "+ fh->yellow_color + "/usr/share/eta/eta-check-inputdevice/type-of-iwb" + fh->no_color);
         } else {
             fh->log("IWB Phase couldn't be detected");
         }
