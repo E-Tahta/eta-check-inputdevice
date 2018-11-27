@@ -138,17 +138,14 @@ void DeviceHandler::handle(const QString &action, const QString &vendor, const Q
     }
 
     else {
-
         fh->log("Unknown action");
-
-        if ( fh->NoPidTypeFileDetected() ) {
-            if ( fh->CreateNoPidTypeFile() ) {
-                fh->log("IWB Phase couldn't be detected. 0 IWB number is written to file");
-            } else {
-                fh->log("IWB Phase couldn't be detected. But There is a iwb file with size.");
-            }
-        }
-
     }
 
+    if ( fh->NoPidTypeFileDetected() ) {
+        if ( fh->CreateNoPidTypeFile() ) {
+            fh->log("IWB Phase couldn't be detected. 0 IWB number is written to file");
+        } else {
+            fh->log("IWB Phase couldn't be detected");
+        }
+    }
 }

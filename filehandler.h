@@ -30,15 +30,13 @@ private:
     QString m_current_time;
     QString m_path;
     QString file_fullpath;
-    QString mice_pid_fullpath;
     QString whoami;
 
     QDir *d;
     QFile file;
 
-    QFile pidtype_file;
-
     bool createFile(const QString &file_path, const QString &file_name);
+    bool createFileForPidType(const QString &file_path, const QString &file_name);
     void updateTime();
     bool writeData(const QString &str);
 };
