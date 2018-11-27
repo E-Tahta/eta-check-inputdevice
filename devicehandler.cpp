@@ -36,6 +36,10 @@ DeviceHandler::DeviceHandler(QObject *parent) :
         }
     }
 
+    if (fh->createPid("optictouch.pid")) {
+        fh->log(fh->yellow_color + "/var/run/optictouch.pid" + fh->no_color + " created on start");
+    }
+
     connect(udm,SIGNAL(deviceChanged(QString,QString,QString)),this,SLOT(handle(QString,QString,QString)));
 }
 
