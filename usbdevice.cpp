@@ -44,10 +44,10 @@ QString UsbDevice::getTypeString() const
         out = "Mouse";
         break;
     case UsbDeviceType::Phase1:
-        out = "IWB Phase 1";
+        out = "IWB PHASE 1";
         break;
     case UsbDeviceType::Phase2:
-        out = "IWB Phase 2";
+        out = "IWB PHASE 2";
         break;
     default:
         out = "Unknown type";
