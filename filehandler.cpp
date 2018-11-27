@@ -66,7 +66,7 @@ bool FileHandler::writeData(const QString &str)
     try {
         updateTime();
         QTextStream out(&file);
-        out << m_current_time + " " + getPath() + " " + str + "\n";
+        out << m_current_time + " " + red_color + getPath() + no_color + " " + str + "\n";
         return true;
     } catch (...) {
         return false;

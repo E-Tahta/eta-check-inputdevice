@@ -19,7 +19,7 @@ DeviceHandler::DeviceHandler(QObject *parent) :
         exit(1);
     }
 
-    fh->log("running as " +fh->getUser());
+    fh->log("running as " + fh->yellow_color + fh->getUser() + fh->no_color);
 
     m_deviceList = getDeviceList();
 
@@ -27,12 +27,12 @@ DeviceHandler::DeviceHandler(QObject *parent) :
 
     if (m_deviceList.length() == 0 ){
         if (fh->removePid("mice.pid")) {
-            fh->log("mice.pid deleted on start");
+            fh->log(fh->yellow_color + "/var/run/mice.pid" + fh->no_color + " deleted on start");
         }
     }
     else{
         if (fh->createPid("mice.pid")) {
-            fh->log("mice.pid created on start");
+            fh->log(fh->yellow_color + "/var/run/mice.pid" + fh->no_color + " created on start");
         }
     }
 
@@ -88,7 +88,7 @@ void DeviceHandler::handle(const QString &action, const QString &vendor, const Q
                 fh->log("Mouse plugged and Mouse Count is " + QString::number(m_deviceList.length()));
                 if (m_deviceList.length() > 0 ){
                     if( fh->createPid(device.getPidName())){
-                        fh->log(device.getPidName()+" created");
+                        fh->log(fh->yellow_color + "/var/run/" + device.getPidName() + fh->no_color + " created");
                     }
                 }
             }
@@ -100,7 +100,7 @@ void DeviceHandler::handle(const QString &action, const QString &vendor, const Q
                 fh->log("Mouse unplugged and Mouse Count is " + QString::number(m_deviceList.length()));
                 if (m_deviceList.length() == 0 ){
                     if( fh->removePid(device.getPidName())) {
-                        fh->log(device.getPidName()+" deleted");
+                        fh->log(fh->yellow_color + "/var/run/" + device.getPidName() + fh->no_color + " deleted");
                     }
                 }
             }
@@ -114,22 +114,22 @@ void DeviceHandler::handle(const QString &action, const QString &vendor, const Q
     else if ( device.getType() == UsbDeviceType::Phase1 || device.getType() == UsbDeviceType::Phase2 ) {
 
         if(fh->createPidType(device.getPidTypeNumber())){
-            fh->log("The IWB number is "+device.getPidTypeNumber() + " and written to file");
+            fh->log("The IWB number is "+device.getPidTypeNumber() + " and written to "+ fh->yellow_color + "/usr/share/eta/eta-check-inputdevice/type-of-iwb" + fh->no_color);
         } else {
-            fh->log("Type Number of iwb could not write to type-of-iwb file");
+            fh->log("Type Number of iwb could not write to " + fh->yellow_color + "/usr/share/eta/eta-check-inputdevice/type-of-iwb" + fh->no_color);
         }
 
         if(action == "add") {
-            fh->log(device.getTypeString()+ " plugged");
+            fh->log(fh->green_color + device.getTypeString() + fh->no_color + " plugged");
             if( fh->createPid(device.getPidName())){
-                fh->log(device.getPidName()+" created");
+                fh->log(fh->yellow_color + "/var/run/" +device.getPidName()+ fh->no_color +" created");
             }
         }
 
         else if (action == "remove") {
-            fh->log(device.getTypeString()+ " ungplugged");
+            fh->log(fh->green_color + device.getTypeString() + fh->no_color + " ungplugged");
             if( fh->removePid(device.getPidName())) {
-                fh->log(device.getPidName()+" deleted");
+                fh->log(fh->yellow_color + "/var/run/" + device.getPidName() + fh->no_color + " deleted");
             }
         }
         else {

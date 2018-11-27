@@ -20,6 +20,11 @@ public:
     bool NoPidTypeFileDetected();
     bool CreateNoPidTypeFile();
 
+    QString red_color = "\033[1;31m";
+    QString yellow_color = "\033[1;33m";
+    QString green_color = "\033[1;32m";
+    QString no_color = "\033[0m";
+
 private:
 
     QString m_current_time;
